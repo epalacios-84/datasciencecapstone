@@ -1,96 +1,59 @@
 # Space Y Launch Cost and Reuse Prediction
 
-## Project Scenario & Overview
+## Project Overview
 
-Space Y is a new entrant in the commercial space industry, aiming to offer competitive launch services by optimizing cost and reliability. SpaceX’s Falcon 9 has demonstrated that first-stage reuse can reduce launch costs from over \$165 million to approximately \$62 million. Replicating this advantage requires accurate prediction of booster recovery success prior to each mission.
+Space Y aims to compete in the commercial launch market by leveraging reusable booster technology to reduce costs and improve reliability. This project develops a data-driven framework to:
 
-This project addresses the following objectives:
-
-1. **Quantify Economic Impact**: Analyze historical launch data to determine how first-stage landings influence overall mission cost.
-2. **Predict Recovery Success**: Develop and evaluate machine learning classifiers that forecast whether a Falcon 9 first stage will land successfully, based on pre-launch parameters.
-3. **Enable Data-Driven Pricing**: Construct interactive dashboards delivering actionable insights on recovery probabilities and cost metrics, supporting Space Y’s strategic pricing and bidding decisions.
-
-The analysis pipeline includes data acquisition, preprocessing, exploratory analysis, feature engineering, model development with hyperparameter tuning, and deployment of visual analytics tools.
-
-1. **Data Collection & Processing**
-   • Gather historical Falcon 9 launch data (payload mass, orbit, launch site, grid fins, reuse counts, etc.).
-   • Clean and preprocess to handle missing values and categorical variables (e.g., launch site, orbit type).
-
-2. **Exploratory Data Analysis**
-   • Visualize success vs. failure rates across launch parameters.
-   • Identify patterns in booster reuse and landing outcomes.
-
-3. **Feature Engineering**
-   • Create derived variables such as launch mass categories, mission type flags, and environmental conditions.
-
-4. **Model Development & Tuning**
-   • Implement classification pipelines (Logistic Regression, Random Forest, SVM, XGBoost) to predict recovery success.
-   • Optimize hyperparameters with cross-validation (GridSearchCV).
-
-5. **Dashboard & Reporting**
-   • Develop interactive dashboards (Plotly Dash and Folium) to display feature importances, confusion matrices, and cost projections.
-   • Summarize findings and recommend pricing strategies aligned with predicted reuse rates.
+1. **Collect & Integrate Launch Data** from public APIs and web sources.
+2. **Wrangle & Store** that data for analysis.
+3. **Explore & Visualize** key launch parameters using SQL, Python, and Folium.
+4. **Engineer Features** relevant to first-stage recovery, such as payload mass, grid fin usage, and prior reuse history.
+5. **Train & Tune** classification models to predict first-stage landing success.
+6. **Communicate Results** through interactive dashboards and a comprehensive report.
 
 ## Repository Structure
 
-```bash
-├── data/                           # Raw and processed datasets
-│   ├── launches.csv               # SpaceX Falcon 9 historical data
-├── notebooks/                      # Analysis and prototyping notebooks
-│   ├── 01_data_collection.ipynb    # API & web scraping of launch data
-│   ├── 02_data_preprocessing.ipynb# Cleaning & feature engineering
-│   ├── 03_eda_visualization.ipynb  # Exploratory plots and maps
-│   ├── 04_model_training.ipynb     # ML pipelines & hyperparameter tuning
-│   └── 05_evaluation_reporting.ipynb# Metrics, confusion matrices & cost analysis
-├── src/                            # Python modules for reuse
-│   ├── collect.py                 # Data fetching utilities
-│   ├── preprocess.py              # Cleaning and feature functions
-│   ├── train.py                   # Model pipeline definitions
-│   └── dashboard.py               # Dash app and Folium map components
-├── dashboards/                     # Deployed dashboard files
-│   ├── app.py                     # Plotly Dash application
-│   └── assets/                    # CSS and static assets
-├── reports/                        # Final PDF report and slides
-│   ├── SpaceY_Capstone_Report.pdf
-│   └── presentation.pptx
-├── requirements.txt                # Python dependencies
-└── README.md                       # Project overview and setup instructions
 ```
 
-## Quickstart
+├── notebooks/                     # Jupyter notebooks by stage
+│   ├── Data Wrangling.ipynb       # Cleaning, merging, and transforming raw data
+│   ├── Data Collection API.ipynb  # Fetching launch data via SpaceX API
+│   ├── Data Collection with Web Scraping lab.ipynb  # Supplementary scraping of launch logs
+│   ├── EDA with SQL.ipynb         # Exploratory queries and aggregations in SQL
+│   ├── EDA with Visualization .ipynb  # Charts, histograms, and correlation plots
+│   ├── Interactive Visual Analytics with Folium.ipynb  # Geospatial mapping of landing sites
+│   └── Machine Learning Prediction.ipynb  # Model pipelines, GridSearchCV, and evaluation
+└── README.md                      # Project overview and setup instructions
+```
 
-1. **Clone the repo:**
+## Getting Started
 
-   ```bash
-   git clone https://github.com/your-org/spacey-launch-costs.git
-   cd spacey-launch-costs
-   ```
-2. **Install dependencies:**
+1. **Install dependencies**:
 
    ```bash
    pip install -r requirements.txt
    ```
-3. **Launch notebooks:**
 
-   ```bash
-   jupyter notebook notebooks/01_data_collection.ipynb
-   ```
-4. **Run dashboard:**
+2. **Run Notebooks**:
+
+   * Data Wrangling: `notebooks/Data Wrangling.ipynb`
+   * Data Collection (API & Scraping): `notebooks/Data Collection API.ipynb`, `notebooks/Data Collection with Web Scraping lab.ipynb`
+   * EDA: `notebooks/EDA with SQL.ipynb`, `notebooks/EDA with Visualization .ipynb`
+   * Geospatial Mapping: `notebooks/Interactive Visual Analytics with Folium.ipynb`
+   * Modeling: `notebooks/Machine Learning Prediction.ipynb`
+
+3. **Launch Dashboard**:
 
    ```bash
    python dashboards/app.py
    ```
 
-## Summary of Findings
+## Key Findings
 
-* **Top Predictors of Recovery:** `ReusedCount`, `GridFins`, and `PayloadMass`.
-* **Model Performance:** Random Forest achieved 90% accuracy and 0.88 ROC-AUC on test data.
-* **Cost Impact:** Successful booster recovery reduces launch cost to \~\$62 M; failures revert cost to \$165 M.
+* **Best Model**: Random Forest delivered 92% accuracy and ROC-AUC of 0.90.
+* **Top Predictors**: `PayloadMass`, `GridFins`, `ReusedCount`, and `Orbit` category.
+* **Visualization Insight**: West Coast launch sites show higher landing success rates.
 
-**Recommendation:** Integrate the predictive classifier into Space Y’s bid engine to adjust pricing dynamically based on recovery probability, maximizing profitability and competitive edge.
+## Contact
 
----
-
-## License
-
-This project is licensed under the MIT License.
+For questions or collaboration, reach out to the Data Science team at Space Y: [datascience@spacey.com](mailto:datascience@spacey.com)
