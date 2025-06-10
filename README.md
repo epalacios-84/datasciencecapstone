@@ -54,6 +54,3 @@ Space Y aims to compete in the commercial launch market by leveraging reusable b
 * **Top Predictors**: `PayloadMass`, `GridFins`, `ReusedCount`, and `Orbit` category.
 * **Visualization Insight**: West Coast launch sites show higher landing success rates.
 
-## Contact
-
-For questions or collaboration, reach out to the Data Science team at Space Y: [datascience@spacey.com](mailto:datascience@spacey.com)
